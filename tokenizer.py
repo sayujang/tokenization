@@ -1,5 +1,4 @@
 import regex as re
-import numpy as np
 from collections import Counter
 with open('train.txt','r') as f:
     text=f.read()
@@ -39,7 +38,6 @@ def Byte_Pair_encode(x, vocab_size=276):
                 j+=1
         v += 1
     return x, merge
-
 
 a,merges=Byte_Pair_encode(encoding)
 
