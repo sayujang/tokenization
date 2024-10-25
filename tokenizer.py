@@ -1,4 +1,3 @@
-import regex as re
 from collections import Counter
 with open('train.txt','r',encoding='utf-8') as f:
     text=f.read()
@@ -60,12 +59,3 @@ a=Byte_Pair_Tokenizer(276)
 a.train(text)
 encodings=a.encode("Servous!! My friend ")
 print(encodings)
-# gpt2pat = re.compile(r"""'s|'t|'re|'ve|'m|'ll|'d| ?\p{L}+| ?\p{N}+| ?[^\s\p{L}\p{N}]+|\s+(?!\S)|\s+""")
-
-# print(re.findall(gpt2pat, "Hello've world123 //!!HOW's     are you   "))
-
-
-
-
-
-
