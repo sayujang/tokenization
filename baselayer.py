@@ -1,5 +1,5 @@
-def get_stats(x):
-    count={}
+def get_stats(x,count=None):
+    count={} if count is None else count
     for pair in zip(x,x[1:]):
         count[pair]=count.get(pair,0)+1
     return count
@@ -17,7 +17,7 @@ def merge_pair(tokens,pair,element):
 class Tokenizer:
     def __init__(self):
         self.merges={}
-        self.vocab=self.build_vocab()
+        self.vocab=self.build_vocab() # initialy vocab has 256 entries
         self.splits=''
         self.special_tokens={}
     def train(self,text,vocab_size):
@@ -26,7 +26,7 @@ class Tokenizer:
         raise NotImplementedError
     def decode(self,tokens):
         raise NotImplementedError
-    def build_vocab(self,):
+    def build_vocab(self):
         vocab={token:bytes([token]) for token in range(256)}
         for (p1,p0),index in self.merges.items():
             vocab[index]=vocab[p1]+vocab[p0]
