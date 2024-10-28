@@ -12,14 +12,14 @@ class Basic_Tokenizer(Tokenizer):
         num_merge=vocab_size-256
         token_copy=tokens.copy()
         merges={}
-        vocab={t:bytes(t) for t in range(256)}
+        vocab={t:bytes([t]) for t in range(256)}
         for i in range(num_merge):
             stats=get_stats(token_copy) #get_stats returns dict(Pair:counts)
             pair=max(stats,key=lambda k: stats[k]) #pair having maximum counts
             element=256+i #mint new token
             token_copy=merge_pair(token_copy,pair,element) #new tokens after merge
             merges[pair]=element #store trained merges on dataset in dict
-            vocab[element]=vocab[pair[0]]+vocab[pair[1]]
+            vocab[element]=vocab[pair[0]]+vocab[pair[1]] #The byte strings get concatenated here
         self.merges=merges
         self.vocab=vocab
 
